@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mainsail Plugin Installer</title>
+  <link href="/static/tailwind.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen p-6">
+  <h1 class="text-3xl font-bold mb-6">🔧 Mainsail Plugin Installer</h1>
+
+  <div class="grid gap-4">
+    {% for plugin in plugins %}
+      <div class="bg-gray-800 p-4 rounded-lg shadow flex flex-col md:flex-row justify-between items-start md:items-center">
+        <div>
+          <h2 class="text-xl font-semibold">{{ plugin.name }}</h2>
+          <p class="text-gray-400">{{ plugin.desc }}</p>
+        </div>
+        <div class="mt-2 md:mt-0">
+          <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onclick="installPlugin('{{ plugin.url }}', '{{ plugin.name }}')">
+            Install
+          </button>
+          <span class="ml-2" id="{{ plugin.name }}-status"></span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    function installPlugin(url, name) {
+      const status = document.getElementById(name + '-status');
+      status.textContent = '⏳ Installing...';
+      fetch('/install', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: url })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'installed') {
+          status.textContent = '✅ Installed';
+        } else if (data.status === 'already_installed') {
+          status.textContent = '✔️ Already Installed';
+        } else {
+          status.textContent = '❌ Error';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

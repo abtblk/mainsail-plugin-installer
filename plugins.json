@@ -1,0 +1,27 @@
+[
+  {
+    "name": "KIAUH",
+    "url": "https://github.com/kiauh/kiauh.git",
+    "desc": "Klipper Installation and Update Helper"
+  },
+  {
+    "name": "Moonraker Timelapse",
+    "url": "https://github.com/mainsail-crew/moonraker-timelapse.git",
+    "desc": "Record print timelapses from webcam"
+  },
+  {
+    "name": "Obico",
+    "url": "https://github.com/Arksine/moonraker-obico.git",
+    "desc": "Remote monitoring, AI failure detection"
+  },
+  {
+    "name": "Mooncord",
+    "url": "https://github.com/julianschill/mooncord.git",
+    "desc": "Discord notifications and updates"
+  },
+  {
+    "name": "Klipper Backup",
+    "url": "https://github.com/Clein/klipper-backup.git",
+    "desc": "Backup and restore configuration files"
+  }
+]
